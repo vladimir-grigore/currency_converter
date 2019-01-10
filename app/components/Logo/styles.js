@@ -8,6 +8,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
   $largeImageSize: imageWidth / 2,
   $smallContainerSize: imageWidth / 2,
   $smallImageSize: imageWidth / 4,
+  $logoTopValue: 7,
   container: {
     alignItems: 'center',
   },
@@ -19,6 +20,8 @@ import EStyleSheet from 'react-native-extended-stylesheet';
   },
   logo: {
     width: '$largeImageSize',
+    position: 'absolute',
+    marginTop: '$logoTopValue',
   },
   text: {
     color: '$white',
