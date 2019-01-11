@@ -3,6 +3,7 @@ import { ScrollView, StatusBar, Linking } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
 import { ListItem, Separator } from '../components/List'
+import { connectAlert } from '../components/Alert'
 
 const ICON_COLOR = '#868686'
 const ICON_SIZE = 23
@@ -13,7 +14,9 @@ class Options extends Component {
   }
 
   handleSitePress = () => {
-    Linking.openURL('http://fixer.io').catch(() => alert('Error occurred!'))
+    Linking.openURL('htsdtp://fixer.io').catch(
+      () => this.props.alertWithType('error', 'Sorry', 'This link cannot be opened')
+    )
   }
   
   render() {
@@ -37,4 +40,4 @@ class Options extends Component {
   }
 }
 
-export default Options
+export default connectAlert(Options)
