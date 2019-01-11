@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, FlatList, View, StatusBar } from 'react-native'
+import { FlatList, View, StatusBar } from 'react-native'
 
 import currencies from '../data/currencies'
 import { ListItem, Separator } from '../components/List'
@@ -8,7 +8,7 @@ const TEMP_CURRENCY = 'CAD'
 
 class CurrencyList extends Component {
   handlePress = () => {
-    console.log("Row press")
+    this.props.navigation.goBack(null)
   }
   
   render(){
@@ -18,7 +18,7 @@ class CurrencyList extends Component {
         <FlatList   
           data={currencies} 
           renderItem={({ item }) => 
-            <ListItem text={item} selected={item === TEMP_CURRENCY} onPress={this.handlePress} checkmark={false} />
+            <ListItem text={item} selected={item === TEMP_CURRENCY} onPress={this.handlePress} checkmark={true} />
           }
           keyExtractor={(item) => item}
           ItemSeparatorComponent={Separator}

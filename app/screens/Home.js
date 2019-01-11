@@ -18,11 +18,13 @@ const CONVERSION_DATE = new Date()
 
 class Home extends Component {
   handlePressBaseCurrency = () => {
-    console.log("Currency press")
+    const { navigation } = this.props
+    navigation.navigate('CurrencyList', { title: 'Base Currency' })
   }
 
   handlePressQuoteCurrency = () => {
-    console.log("Currency press")
+    const { navigation } = this.props
+    navigation.navigate('CurrencyList', { title: 'Quote Currency' })
   }
 
   handleTextChange = (text) => {
