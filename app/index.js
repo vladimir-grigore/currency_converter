@@ -3,6 +3,7 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 
 import Home from './screens/Home'
 import CurencyList from './screens/CurrencyList'
+import Options from './screens/Options'
 
 EStyleSheet.build({
   $primaryBlue: '#4F6D7A',
@@ -13,4 +14,4 @@ EStyleSheet.build({
   $darkText: '#343434',
 })
 
-export default () => <CurencyList />
+export default () => <Options />
