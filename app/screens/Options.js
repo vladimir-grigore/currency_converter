@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, StatusBar } from 'react-native'
+import { ScrollView, StatusBar, Linking } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
 import { ListItem, Separator } from '../components/List'
@@ -9,11 +9,11 @@ const ICON_SIZE = 23
 
 class Options extends Component {
   handleThemesPress = () => {
-
+    this.props.navigation.navigate('Themes')
   }
 
   handleSitePress = () => {
-
+    Linking.openURL('http://fixer.io').catch(() => alert('Error occurred!'))
   }
   
   render() {
