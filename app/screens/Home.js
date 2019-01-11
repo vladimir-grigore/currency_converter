@@ -9,6 +9,8 @@ import { ClearButton } from '../components/Buttons'
 import { LastConverted } from '../components/Text'
 import { Header } from '../components/Header'
 
+import { swapCurrency, changeCurrencyAmount } from '../actions/currencies'
+
 const BASE_CURRENCY = 'USD'
 const QUOTE_CURRENCY = 'GBP'
 const BASE_PRICE = '100' 
@@ -27,12 +29,14 @@ class Home extends Component {
     navigation.navigate('CurrencyList', { title: 'Quote Currency' })
   }
 
-  handleTextChange = (text) => {
-    console.log("Text change", text)
+  handleTextChange = (amount) => {
+    // this.props.dispatch(changeCurrencyAmount(amount))
+    console.log(changeCurrencyAmount(amount))
   }
 
   handleSwapCurrency = () => {
-    console.log("Swap currency")
+    // this.props.dispatch(swapCurrency())
+    console.log(swapCurrency())
   }
 
   handleOptionsPress = () => {
