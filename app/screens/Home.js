@@ -15,12 +15,12 @@ import { swapCurrency, changeCurrencyAmount } from '../actions/currencies'
 class Home extends Component {
   handlePressBaseCurrency = () => {
     const { navigation } = this.props
-    navigation.navigate('CurrencyList', { title: 'Base Currency' })
+    navigation.navigate('CurrencyList', { title: 'Base Currency', type: 'base' })
   }
 
   handlePressQuoteCurrency = () => {
     const { navigation } = this.props
-    navigation.navigate('CurrencyList', { title: 'Quote Currency' })
+    navigation.navigate('CurrencyList', { title: 'Quote Currency', type: 'quote' })
   }
 
   handleTextChange = (text) => {
@@ -43,11 +43,11 @@ class Home extends Component {
     }
 
     return(
-      <Container>
+      <Container backgroundColor={this.props.primaryColor} >
         <StatusBar translucent={false} barStyle="light-content" />
         <Header onPress={this.handleOptionsPress}/>
         <KeyboardAvoidingView behavior='padding'>
-          <Logo />
+          <Logo tintColor={this.props.primaryColor} />
 
           <InputWithButton 
             buttonText={this.props.baseCurrency} 
@@ -55,12 +55,14 @@ class Home extends Component {
             defaultValue={this.props.amount.toString()}
             keyboardType='numeric'
             onChangeText={this.handleTextChange}
+            textColor={this.props.primaryColor}
           />
           <InputWithButton 
             buttonText={this.props.quoteCurrency} 
             onPress={this.handlePressQuoteCurrency} 
             value={quotePrice}
             editable={false}
+            textColor={this.props.primaryColor}
           />
           <LastConverted 
             base={this.props.baseCurrency} 
@@ -86,7 +88,8 @@ const mapStateToProps = (state) => {
     amount: state.currencies.amount,
     conversionRate: rates[quoteCurrency] || 0,
     isFetching: conversionSelector.isFetching,
-    lastConvertedDate: conversionSelector.date ? new Date(conversionSelector.date) : new Date()
+    lastConvertedDate: conversionSelector.date ? new Date(conversionSelector.date) : new Date(),
+    primaryColor: state.theme.primaryColor,
   }
 }
 
