@@ -9,8 +9,8 @@ import {
 } from '../actions/currencies'
   
 const initialState = {
-  baseCurrency: 'USD',
-  quoteCurrency: 'GBP',
+  baseCurrency: 'CAD',
+  quoteCurrency: 'USD',
   amount: 100,
   conversions: {},
   error: null,
