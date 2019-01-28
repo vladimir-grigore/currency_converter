@@ -10,9 +10,20 @@ import { ClearButton } from '../components/Buttons'
 import { LastConverted } from '../components/Text'
 import { Header } from '../components/Header'
 
-import { swapCurrency, changeCurrencyAmount } from '../actions/currencies'
+import { swapCurrency, changeCurrencyAmount, getInitialConversion } from '../actions/currencies'
+import { connectAlert } from '../components/Alert'
 
 class Home extends Component {
+  componentWillMount() {
+    this.props.dispatch(getInitialConversion())
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.currencyError && nextProps.currencyError !== this.props.currencyError) {
+      this.props.alertWithType('error', 'ERROR', nextProps.currencyError)
+    }
+  }
+
   handlePressBaseCurrency = () => {
     const { navigation } = this.props
     navigation.navigate('CurrencyList', { title: 'Base Currency', type: 'base' })
@@ -90,7 +101,8 @@ const mapStateToProps = (state) => {
     isFetching: conversionSelector.isFetching,
     lastConvertedDate: conversionSelector.date ? new Date(conversionSelector.date) : new Date(),
     primaryColor: state.theme.primaryColor,
+    currencyError: state.currencies.error,
   }
 }
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps)(connectAlert(Home))
